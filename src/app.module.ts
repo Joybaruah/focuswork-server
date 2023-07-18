@@ -1,20 +1,10 @@
-import 'dotenv/config'
 import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
+import { dataSourceOptions } from 'database/data-source';
 
 // DATABASE
-const DATABASE = TypeOrmModule.forRoot({
-  type: "postgres",
-  host: process.env.DATABASE_HOST,
-  port: parseInt(process.env.DATABASE_PORT),
-  username: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
-  entities: [],
-  synchronize: false
-})
+const DATABASE = TypeOrmModule.forRoot(dataSourceOptions)
 
 // APP
 const APPS = [
